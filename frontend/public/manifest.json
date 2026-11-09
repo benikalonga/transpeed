@@ -1,0 +1,16 @@
+{
+  "name": "Transpeed — Rides & Deliveries",
+  "short_name": "Transpeed",
+  "description": "Book a ride or send a parcel in seconds, and name your own price.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0E0E1A",
+  "theme_color": "#5B3DF5",
+  "orientation": "portrait",
+  "icons": [
+    { "src": "/icons/icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any maskable" }
+  ],
+  "categories": ["travel", "transportation", "navigation"],
+  "lang": "en",
+  "dir": "ltr"
+}

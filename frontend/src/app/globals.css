@@ -1,0 +1,129 @@
+@import 'leaflet/dist/leaflet.css';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    -webkit-tap-highlight-color: transparent;
+  }
+  html,
+  body {
+    @apply bg-canvas text-ink antialiased;
+    overscroll-behavior-y: none;
+  }
+  /* 16px inputs stop iOS from zooming in on focus */
+  input,
+  select,
+  textarea {
+    font-size: 16px;
+  }
+}
+
+@layer components {
+  .phone-frame {
+    @apply relative mx-auto min-h-[100dvh] w-full max-w-md bg-canvas;
+  }
+  .surface {
+    @apply rounded-2xl border border-line bg-white;
+  }
+  .tap {
+    @apply transition-transform duration-100 active:scale-[.97];
+  }
+
+  .btn {
+    @apply tap inline-flex items-center justify-center gap-2 rounded-xl px-5 py-3.5 text-[15px] font-semibold disabled:cursor-not-allowed disabled:opacity-40;
+  }
+  .btn-brand {
+    @apply btn bg-brand-500 text-white shadow-[0_8px_20px_-8px_rgba(91,61,245,.7)] hover:bg-brand-600;
+  }
+  .btn-ink {
+    @apply btn bg-ink text-white hover:bg-ink-soft;
+  }
+  .btn-ghost {
+    @apply btn border border-line bg-white text-ink hover:bg-canvas;
+  }
+  .btn-danger {
+    @apply btn bg-red-500 text-white hover:bg-red-600;
+  }
+
+  .field {
+    @apply w-full rounded-xl border border-transparent bg-canvas px-4 py-3.5 font-medium text-ink outline-none transition placeholder:font-normal placeholder:text-ink-faint focus:border-brand-400 focus:bg-white;
+  }
+  .label {
+    @apply mb-1.5 block text-xs font-semibold uppercase tracking-wide text-ink-muted;
+  }
+
+  .chip {
+    @apply tap inline-flex items-center gap-1.5 rounded-full border px-3.5 py-2 text-sm font-semibold;
+  }
+  .chip-on {
+    @apply chip border-ink bg-ink text-white;
+  }
+  .chip-off {
+    @apply chip border-line bg-white text-ink-soft;
+  }
+
+  .sheet {
+    @apply fixed bottom-0 left-1/2 z-[1000] w-full max-w-md -translate-x-1/2 rounded-t-[28px] bg-white shadow-float;
+    padding-bottom: max(1rem, env(safe-area-inset-bottom));
+  }
+  .grabber {
+    @apply mx-auto mb-1 mt-3 h-1 w-10 rounded-full bg-line;
+  }
+}
+
+@layer utilities {
+  .pb-nav {
+    padding-bottom: calc(5.5rem + env(safe-area-inset-bottom));
+  }
+  .animate-rise {
+    animation: rise 0.28s cubic-bezier(0.2, 0.9, 0.3, 1.2) both;
+  }
+  .animate-radar {
+    animation: radar 1.8s ease-out infinite;
+  }
+  .skeleton {
+    background: linear-gradient(90deg, #ecebf3 25%, #f6f5fa 50%, #ecebf3 75%);
+    background-size: 200% 100%;
+    animation: shimmer 1.4s infinite;
+    @apply rounded-lg;
+  }
+}
+
+@keyframes rise {
+  from {
+    transform: translateY(16px);
+    opacity: 0;
+  }
+  to {
+    transform: none;
+    opacity: 1;
+  }
+}
+@keyframes radar {
+  0% {
+    transform: scale(0.6);
+    opacity: 0.7;
+  }
+  100% {
+    transform: scale(1.8);
+    opacity: 0;
+  }
+}
+@keyframes shimmer {
+  to {
+    background-position: -200% 0;
+  }
+}
+
+/* Leaflet tweaks */
+.leaflet-container {
+  font-family: inherit;
+  background: #e9e7f1;
+}
+.tsp-marker {
+  background: none;
+  border: none;
+}
